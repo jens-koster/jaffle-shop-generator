@@ -87,7 +87,8 @@ class Customer(ABC):
             if p_tweet > p_tweet_threshold:
                 order = self.get_order(day)
                 if order and len(order.items) > 0:
-                    return order, self.get_tweet(order)
+                    order.tweet = self.get_tweet(order)
+                    return order, order.tweet
                 else:
                     return None, None
             else:

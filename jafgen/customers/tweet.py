@@ -5,7 +5,7 @@ from typing import NewType
 from faker import Faker
 
 import jafgen.customers.customers as customer
-from jafgen.customers.order import Order
+import jafgen.customers.order as ord
 from jafgen.time import Day
 
 fake = Faker()
@@ -17,7 +17,7 @@ TweetId = NewType("TweetId", uuid.UUID)
 class Tweet:
     day: Day
     customer: "customer.Customer"
-    order: Order
+    order: "ord.Order"
     id: TweetId = field(default_factory=lambda: TweetId(fake.uuid4()))
     content: str = field(init=False)
 

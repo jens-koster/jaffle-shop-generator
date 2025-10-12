@@ -59,7 +59,8 @@ class Season(str, Enum):
 
 @dataclass(init=False)
 class Day:
-    EPOCH = dt.datetime(year=2023, month=9, day=1)
+
+    EPOCH = dt.datetime.now() - dt.timedelta(weeks=5)
     SEASONAL_MONTHLY_CURVE = AnnualCurve()
     WEEKEND_CURVE = WeekendCurve()
     GROWTH_CURVE = GrowthCurve()
@@ -139,4 +140,3 @@ class WeekHoursOfOperation:
 
     def iter_minutes(self, day: Day) -> Iterator[int]:
         yield from self._get_todays_schedule(day).iter_minutes()
-
