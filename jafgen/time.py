@@ -1,4 +1,5 @@
 import datetime as dt
+import random
 from dataclasses import dataclass
 from enum import Enum
 from typing import Iterator
@@ -60,14 +61,17 @@ class Season(str, Enum):
 @dataclass(init=False)
 class Day:
 
-    EPOCH = dt.datetime.now() - dt.timedelta(weeks=5)
+    EPOCH = dt.datetime.now() - dt.timedelta(days=2)
     SEASONAL_MONTHLY_CURVE = AnnualCurve()
     WEEKEND_CURVE = WeekendCurve()
     GROWTH_CURVE = GrowthCurve()
 
     def __init__(self, date_index: int, minutes: int = 0):
         self.date_index = date_index
-        self.date = self.EPOCH + dt.timedelta(days=date_index, minutes=minutes)
+        self.date = self.EPOCH + dt.timedelta(
+            days=date_index,
+            minutes=minutes,
+            seconds=random.randint(0, 59))
         self.effects = [
             self.SEASONAL_MONTHLY_CURVE.eval(self.date),
             self.WEEKEND_CURVE.eval(self.date),
