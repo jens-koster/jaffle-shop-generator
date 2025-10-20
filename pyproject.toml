@@ -3,18 +3,18 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "jafgen"
-version = "0.4.14"
-authors = [{ name = "gwenwindflower", email = "gwenwindflower@gmail.com" }]
+name = "jafkafegen"
+version = "0.4.19"
+authors = [{ name = "Jens Köster", email = "pypi@jensbox.se" }]
 dependencies = ["numpy", "Faker", "typer"]
-description = "A synthetic data generator CLI for a fictional Jaffle Shop"
+description = "A fork of the dbtlabs Jaffle Shop generator, for baking realtime jaffles on kafka."
 readme = "README.md"
 license = { file = "LICENSE" }
 [tool.setuptools.packages.find]
 exclude = ["*.tests", "*.tests.*", "tests.*", "tests"]
 
 [project.scripts]
-jafgen = "jafgen.cli:app"
+jafkafegen = "jafgen.cli:app"
 
 [project.optional-dependencies]
 dev = ["ruff", "pytest"]
